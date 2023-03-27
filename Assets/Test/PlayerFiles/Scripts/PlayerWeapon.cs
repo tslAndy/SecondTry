@@ -8,7 +8,12 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private float weaponCooldown;
     [SerializeField] private Collider2D weaponCollider;
 
+
+
     private float _lastAttacked;
+    
+    public delegate void AttackAction();
+    public static event AttackAction OnAttack;
 
     private void Update()
     {
@@ -23,6 +28,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         weaponCollider.enabled = true;
         _lastAttacked = Time.time;
+        OnAttack.Invoke();
         yield return new WaitForSeconds(weaponCooldown);
         weaponCollider.enabled = false;
     }
