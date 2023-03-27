@@ -23,10 +23,13 @@ public class Player : MonoBehaviour
 
     private State _currentState;
     private bool _invisible, _coolingDownAfterAttack;
-
     public float CurrentEnergyAmount { get; set; }
-    
+    public bool IsInShadow { get; set; }
+
     private Vector2 _keyboardDirection, _mouseDirection;
+    
+    public delegate void UpdateLightAction();
+    public static event UpdateLightAction OnLightUpdate;
 
     void Start()
     {
@@ -88,6 +91,9 @@ public class Player : MonoBehaviour
                 StartCoroutine(DashCoroutine());
                 break;
         }
+        
+        IsInShadow = true;
+        OnLightUpdate.Invoke();
     }
 
     private IEnumerator DashCoroutine()
