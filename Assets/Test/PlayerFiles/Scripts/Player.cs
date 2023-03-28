@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private Light2D nightLight;
+    [SerializeField] private MapManager mapManager;
 
     enum State
     {
@@ -88,13 +89,15 @@ public class Player : MonoBehaviour
         Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, _mouseDirection);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
 
+        float speedFactor = mapManager.GetSpeedFactor(transform.position);
+
         switch (_currentState)
         {
             case State.Idle:
                 rb.velocity = Vector2.zero;
                 break;
             case State.Run:
-                rb.velocity = _keyboardDirection * MovementSpeed;
+                rb.velocity = _keyboardDirection * MovementSpeed * speedFactor;
                 break;
             case State.DashStart:
                 StartCoroutine(DashCoroutine());
