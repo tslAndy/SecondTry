@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float movementSpeed, rotationSpeed;
     [SerializeField] private float startEnergyAmount;
-    [SerializeField] private float dashSpeed, dashDuration, dashSpent;
+    [SerializeField] private float dashSpeed, dashDuration, dashSpent, dashTrailVisibleDuration;
     [SerializeField] private float invisibleSpent, afterAttackCooldown;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -45,8 +45,7 @@ public class Player : MonoBehaviour
         _currentState = State.Idle;
         CurrentEnergyAmount = startEnergyAmount;
         PlayerWeapon.OnAttack += StartCooldownCoroutine;
-        trailRenderer.time = dashDuration;
-        LightSwitcher.OnLightTurnOff += SwitchNightLight;
+        //trailRenderer.time = dashTrailVisibleDuration;
     }
     
     void Update()
@@ -116,8 +115,9 @@ public class Player : MonoBehaviour
         CurrentEnergyAmount -= dashSpent;
         yield return new WaitForSeconds(dashDuration);
         rb.velocity = Vector2.zero;
-        trailRenderer.enabled = false;
         _currentState = State.Idle;
+        yield return new WaitForSeconds(dashTrailVisibleDuration);
+        trailRenderer.enabled = false;
     }
 
     private IEnumerator AfterAttackCooldownCoroutine()
