@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed, rotationSpeed;
+    [SerializeField] private float movementSpeed, rotationSpeed;
     [SerializeField] private float startEnergyAmount;
     [SerializeField] private float dashSpeed, dashDuration, dashSpent;
     [SerializeField] private float invisibleSpent, afterAttackCooldown;
@@ -26,6 +26,12 @@ public class Player : MonoBehaviour
     private State _currentState;
     private bool _invisible, _coolingDownAfterAttack;
     public float CurrentEnergyAmount { get; set; }
+    public float MovementSpeed
+    {
+        get { return movementSpeed; }
+        set { movementSpeed = value; }
+    }
+
     public bool IsInShadow { get; set; }
 
     private Vector2 _keyboardDirection, _mouseDirection;
@@ -88,7 +94,7 @@ public class Player : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 break;
             case State.Run:
-                rb.velocity = _keyboardDirection * moveSpeed;
+                rb.velocity = _keyboardDirection * MovementSpeed;
                 break;
             case State.DashStart:
                 StartCoroutine(DashCoroutine());
