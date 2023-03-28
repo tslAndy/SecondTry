@@ -8,9 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed, rotationSpeed;
     [SerializeField] private float startEnergyAmount;
     [SerializeField] private float dashSpeed, dashDuration, dashSpent;
-    [SerializeField] private float invisibleSpent;
+    [SerializeField] private float invisibleSpent, afterAttackCooldown;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     enum State
     {
@@ -21,15 +22,21 @@ public class Player : MonoBehaviour
     }
 
     private State _currentState;
-    private bool _invisible;
-    private float _currentEnergyAmount;
+    private bool _invisible, _coolingDownAfterAttack;
+    public float CurrentEnergyAmount { get; set; }
+    public bool IsInShadow { get; set; }
 
     private Vector2 _keyboardDirection, _mouseDirection;
+    
+    public delegate void UpdateLightAction();
+    public static event UpdateLightAction OnLightUpdate;
 
     void Start()
     {
         _currentState = State.Idle;
-        _currentEnergyAmount = startEnergyAmount;
+        CurrentEnergyAmount = startEnergyAmount;
+        PlayerWeapon.OnAttack += StartCooldownCoroutine;
+        trailRenderer.time = dashDuration;
     }
     
     void Update()
@@ -50,9 +57,9 @@ public class Player : MonoBehaviour
         if (_currentState == State.Dash)
             return;
 
-        _invisible = invisiblePressed && (_currentEnergyAmount - invisibleSpent >= 0);
+        _invisible = invisiblePressed && (CurrentEnergyAmount - invisibleSpent >= 0) && !_coolingDownAfterAttack;
         
-        if (dashPressed && _currentEnergyAmount - dashSpent >= 0 && !_invisible)
+        if (dashPressed && CurrentEnergyAmount - dashSpent >= 0 && !_invisible)
             _currentState = State.DashStart;
         else if (_keyboardDirection == Vector2.zero)
             _currentState = State.Idle;
@@ -65,7 +72,7 @@ public class Player : MonoBehaviour
     private void UpdateState()
     {
         if (_invisible)
-            _currentEnergyAmount -= invisibleSpent * Time.deltaTime;
+            CurrentEnergyAmount -= invisibleSpent * Time.deltaTime;
         Color color = spriteRenderer.color;
         spriteRenderer.color = new Color(color.r, color.g, color.b,_invisible ? 0.5f : 1.0f);
         
@@ -84,15 +91,33 @@ public class Player : MonoBehaviour
                 StartCoroutine(DashCoroutine());
                 break;
         }
+        
+        IsInShadow = true;
+        OnLightUpdate.Invoke();
     }
 
     private IEnumerator DashCoroutine()
     {
+        trailRenderer.enabled = true;
         rb.velocity = _mouseDirection * dashSpeed;
         _currentState = State.Dash;
-        _currentEnergyAmount -= dashSpent;
+        CurrentEnergyAmount -= dashSpent;
         yield return new WaitForSeconds(dashDuration);
         rb.velocity = Vector2.zero;
+        trailRenderer.enabled = false;
         _currentState = State.Idle;
+    }
+
+    private IEnumerator AfterAttackCooldownCoroutine()
+    {
+        _coolingDownAfterAttack = true;
+        yield return new WaitForSeconds(afterAttackCooldown);
+        _coolingDownAfterAttack = false;
+    }
+
+    private void StartCooldownCoroutine()
+    {
+        if (_invisible)
+            StartCoroutine(AfterAttackCooldownCoroutine());
     }
 }
