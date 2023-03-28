@@ -6,6 +6,9 @@ using Pathfinding;
 public class EnemyScript : MonoBehaviour
 {
     [SerializeField]
+    private bool shouldEnemyStay = false;
+
+    [SerializeField]
     private List<Transform> pathPoints = new List<Transform>();
     private int targetIndex = 0;
 
@@ -16,32 +19,33 @@ public class EnemyScript : MonoBehaviour
         pathScript = GetComponent<AIPath>();
         destinationScript = GetComponent<AIDestinationSetter>();
 
-        destinationScript.target = pathPoints[targetIndex];
+        if (!shouldEnemyStay)
+            destinationScript.target = pathPoints[targetIndex];
     }
 
     // Update is called once per frame
     void Update()
     {
-        CanMoveNext();
+        if(!shouldEnemyStay)
+            CanMoveNext();
     }
 
     private void MoveNext()
     {
         destinationScript.target = pathPoints[targetIndex];
-        Debug.LogError("TargetChanged");
     }
 
     private void CanMoveNext()
     {
         float magnitude = (destinationScript.target.position - transform.position).magnitude;
-        Debug.Log(magnitude);
+        Debug.Log(targetIndex);
         if (magnitude < 1)
         {
             targetIndex++;
             if (targetIndex < pathPoints.Count)
                 MoveNext();
             else
-                targetIndex = 0;
+                targetIndex = -1;
         }
     }
 }
