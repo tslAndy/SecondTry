@@ -2,16 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed, rotationSpeed;
+    [SerializeField] private float movementSpeed, rotationSpeed;
     [SerializeField] private float startEnergyAmount;
-    [SerializeField] private float dashSpeed, dashDuration, dashSpent;
+    [SerializeField] private float dashSpeed, dashDuration, dashSpent, dashTrailVisibleDuration;
     [SerializeField] private float invisibleSpent, afterAttackCooldown;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private Light2D nightLight;
 
     enum State
     {
@@ -24,6 +26,12 @@ public class Player : MonoBehaviour
     private State _currentState;
     private bool _invisible, _coolingDownAfterAttack;
     public float CurrentEnergyAmount { get; set; }
+    public float MovementSpeed
+    {
+        get { return movementSpeed; }
+        set { movementSpeed = value; }
+    }
+
     public bool IsInShadow { get; set; }
 
     private Vector2 _keyboardDirection, _mouseDirection;
@@ -36,7 +44,7 @@ public class Player : MonoBehaviour
         _currentState = State.Idle;
         CurrentEnergyAmount = startEnergyAmount;
         PlayerWeapon.OnAttack += StartCooldownCoroutine;
-        trailRenderer.time = dashDuration;
+        //trailRenderer.time = dashTrailVisibleDuration;
     }
     
     void Update()
@@ -85,7 +93,7 @@ public class Player : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 break;
             case State.Run:
-                rb.velocity = _keyboardDirection * moveSpeed;
+                rb.velocity = _keyboardDirection * MovementSpeed;
                 break;
             case State.DashStart:
                 StartCoroutine(DashCoroutine());
@@ -104,8 +112,9 @@ public class Player : MonoBehaviour
         CurrentEnergyAmount -= dashSpent;
         yield return new WaitForSeconds(dashDuration);
         rb.velocity = Vector2.zero;
-        trailRenderer.enabled = false;
         _currentState = State.Idle;
+        yield return new WaitForSeconds(dashTrailVisibleDuration);
+        trailRenderer.enabled = false;
     }
 
     private IEnumerator AfterAttackCooldownCoroutine()
@@ -120,4 +129,6 @@ public class Player : MonoBehaviour
         if (_invisible)
             StartCoroutine(AfterAttackCooldownCoroutine());
     }
+
+    private void SwitchNightLight() => nightLight.enabled = !nightLight.enabled;
 }

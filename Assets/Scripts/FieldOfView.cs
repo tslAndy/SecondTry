@@ -1,63 +1,66 @@
-﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
+    [SerializeField]
+    private float radius = 5;
 
-	public float viewRadius;
-	[Range(0, 360)]
-	public float viewAngle;
+    [SerializeField]
+    [Range(1,360)]
+    private float angle = 45;
 
-	public LayerMask targetMask;
-	public LayerMask obstacleMask;
+    [SerializeField]
+    private LayerMask targetLayer;
+    [SerializeField]
+    private LayerMask obstructionLayer;
 
-	[HideInInspector]
-	public List<Transform> visibleTargets = new List<Transform>();
+    [SerializeField]
+    private GameObject playerRef;
 
-	void Start()
-	{
-		StartCoroutine("FindTargetsWithDelay", .2f);
-	}
+    public bool CanSeePlayer { get; set; }
 
+    private void Start()
+    {
+        playerRef = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(FOVCheck());
+    }
 
-	IEnumerator FindTargetsWithDelay(float delay)
-	{
-		while (true)
-		{
-			yield return new WaitForSeconds(delay);
-			FindVisibleTargets();
-		}
-	}
+    private IEnumerator FOVCheck()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        Debug.Log(CanSeePlayer);
+        while (true)
+        {
+            yield return wait;
+            FOV();
+        }
+    }
 
-	void FindVisibleTargets()
-	{
-		visibleTargets.Clear();
-		Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+    private void FOV()
+    {
+        Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
 
-		for (int i = 0; i < targetsInViewRadius.Length; i++)
-		{
-			Transform target = targetsInViewRadius[i].transform;
-			Vector3 dirToTarget = (target.position - transform.position).normalized;
-			if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-			{
-				float dstToTarget = Vector3.Distance(transform.position, target.position);
+        if(rangeCheck.Length > 0)
+        {
+            Transform target = rangeCheck[0].transform;
+            Vector2 directionToTarget = (target.position - transform.position).normalized;
 
-				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
-				{
-					visibleTargets.Add(target);
-				}
-			}
-		}
-	}
+            if(Vector2.Angle(transform.up, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
-
-	public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
-	{
-		if (!angleIsGlobal)
-		{
-			angleInDegrees += transform.eulerAngles.y;
-		}
-		return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-	}
+                if(!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))
+                    CanSeePlayer = true;
+                else 
+                    CanSeePlayer = false;
+            }
+            else
+                CanSeePlayer = false;
+        }
+        else if(CanSeePlayer)
+            CanSeePlayer = false;
+    }
 }
