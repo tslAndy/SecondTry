@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private Light2D nightLight;
 
     enum State
     {
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
         CurrentEnergyAmount = startEnergyAmount;
         PlayerWeapon.OnAttack += StartCooldownCoroutine;
         trailRenderer.time = dashDuration;
+        LightSwitcher.OnLightTurnOff += SwitchNightLight;
     }
     
     void Update()
@@ -120,4 +123,6 @@ public class Player : MonoBehaviour
         if (_invisible)
             StartCoroutine(AfterAttackCooldownCoroutine());
     }
+
+    private void SwitchNightLight() => nightLight.enabled = !nightLight.enabled;
 }
