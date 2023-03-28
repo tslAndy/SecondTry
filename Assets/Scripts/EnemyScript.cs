@@ -10,7 +10,15 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private List<Transform> pathPoints = new List<Transform>();
+    private List<Transform> pathPointsReserve = new List<Transform>();
     private int targetIndex = 0;
+
+    [SerializeField]
+    private float playerPosForgetTimer;
+
+    private bool isEnenySeeingPlayer;
+
+    private Transform playerRef;
 
     private AIPath pathScript;
     private AIDestinationSetter destinationScript;
@@ -18,6 +26,7 @@ public class EnemyScript : MonoBehaviour
     {
         pathScript = GetComponent<AIPath>();
         destinationScript = GetComponent<AIDestinationSetter>();
+        playerRef = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (!shouldEnemyStay)
             destinationScript.target = pathPoints[targetIndex];
@@ -26,10 +35,22 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isEnenySeeingPlayer = GetComponent<FieldOfView>().CanSeePlayer;
+        if (isEnenySeeingPlayer)
+        {
+            ChangeTargetToPlayer();
+            Debug.LogWarning("ChangingToPlayer");
+        }
         if(!shouldEnemyStay)
             CanMoveNext();
     }
 
+    private void ChangeTargetToPlayer()
+    {
+        pathPointsReserve = pathPoints;
+        pathPoints.Clear();
+        pathPoints.Add(playerRef);
+    }
     private void MoveNext()
     {
         destinationScript.target = pathPoints[targetIndex];
@@ -38,7 +59,6 @@ public class EnemyScript : MonoBehaviour
     private void CanMoveNext()
     {
         float magnitude = (destinationScript.target.position - transform.position).magnitude;
-        Debug.Log(targetIndex);
         if (magnitude < 1)
         {
             targetIndex++;
