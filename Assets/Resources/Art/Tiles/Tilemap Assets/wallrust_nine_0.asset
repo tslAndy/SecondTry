@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: wallrust_norust-sheet_0
+  m_Name: wallrust_nine_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -1837637741, guid: 0d63944a11693d344a0014c1d1cedc89, type: 3}
+  m_Sprite: {fileID: -1414558667, guid: 934f5e2fe1cfca343a5786af21f238da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
