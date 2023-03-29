@@ -52,7 +52,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pathPoints.Count == 1 && currentState !=EnemyStates.FollowingPlayer )
+        if (pathPoints.Count == 1 && currentState != EnemyStates.FollowingPlayer )
         {
             SwitchState(EnemyStates.Staying);
         }
@@ -60,7 +60,7 @@ public class EnemyScript : MonoBehaviour
         switch (currentState)
         {
             case EnemyStates.Staying:
-                animator.SetTrigger("Staying");
+                animator?.SetTrigger("Staying");
                 if (isEnenySeeingPlayer)
                 {
                     ChangeTargetToPlayer();
@@ -87,7 +87,6 @@ public class EnemyScript : MonoBehaviour
             default:
                 break;
 
-            ChangeTargetToPlayer();
             // Debug.LogWarning("ChangingToPlayer");
 
         }
@@ -113,14 +112,14 @@ public class EnemyScript : MonoBehaviour
     private void ChangeTargetToPlayer()
     {
         SwitchState(EnemyStates.FollowingPlayer);
-        animator.SetTrigger("Walking");
+        animator?.SetTrigger("Walking");
     }
     private void ChangeTargetToDefault()
     {
         targetIndex = 0;
         playerPosForgetTimerCounter = playerPosForgetTimer;
         destinationScript.target = pathPoints[targetIndex];
-        animator.SetTrigger("Walking");
+        animator?.SetTrigger("Walking");
 
         SwitchState(EnemyStates.WalkingBetweenPoints);
     }
