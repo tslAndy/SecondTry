@@ -13,10 +13,18 @@ public class PlayerWeapon : MonoBehaviour
     public delegate void AttackAction();
     public static event AttackAction OnAttack;
 
+    public delegate void UpdateComboAction();
+    public static event UpdateComboAction OnComboUpdate;
+
     private int _killedInCombo;
+    public int KilledInCombo
+    {
+        get { return _killedInCombo; }
+    }
+
     private float _lastTimeKilledEnemy;
     private float _lastAttacked;
-    private float _playerStartSpeed, _dv;
+    private float _playerStartSpeed;
 
 
     private void Start()
@@ -75,5 +83,6 @@ public class PlayerWeapon : MonoBehaviour
         // start adding speed after two or more kills
         _killedInCombo++;
         player.MovementSpeed += comboDeltaV;
+        OnComboUpdate.Invoke();
     }
 }
