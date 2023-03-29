@@ -35,11 +35,21 @@ public class Player : MonoBehaviour
         set { movementSpeed = value; }
     }
 
+<<<<<<< HEAD:Assets/Scripts/Player.cs
     public float StartEnergyAmount
     {
         get { return startEnergyAmount; }
     }
 
+=======
+    public bool Invisible
+    {
+        get { return _invisible; }
+        set { _invisible = value; }
+    }
+
+
+>>>>>>> Andy:Assets/Test/PlayerFiles/Scripts/Player.cs
     public bool IsInShadow { get; set; }
 
     private Vector2 _keyboardDirection, _mouseDirection;
