@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private Light2D nightLight;
     [SerializeField] private MapManager mapManager;
+    [SerializeField] private Animator animator;
 
     enum State
     {
@@ -114,9 +115,11 @@ public class Player : MonoBehaviour
         {
             case State.Idle:
                 rb.velocity = Vector2.zero;
+                animator.SetTrigger("Idle");
                 break;
             case State.Run:
                 rb.velocity = _keyboardDirection * MovementSpeed * speedFactor;
+                animator.SetTrigger("Walking");
                 break;
             case State.DashStart:
                 StartCoroutine(DashCoroutine());

@@ -9,6 +9,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private float maxDelayBetweenKills, comboDeltaV;
     [SerializeField] private Collider2D weaponCollider;
     [SerializeField] private Player player;
+    [SerializeField] private Animator animator;
 
     public delegate void AttackAction();
     public static event AttackAction OnAttack;
@@ -55,6 +56,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         weaponCollider.enabled = true;
         _lastAttacked = Time.time;
+        animator.SetTrigger("Attack");
         OnAttack.Invoke();
         yield return new WaitForSeconds(weaponCooldown);
         weaponCollider.enabled = false;
