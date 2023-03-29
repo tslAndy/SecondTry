@@ -54,7 +54,6 @@ public class EnemyScript : MonoBehaviour
     {
         if (pathPoints.Count == 1 && currentState !=EnemyStates.FollowingPlayer )
         {
-<<<<<<< HEAD
             SwitchState(EnemyStates.Staying);
         }
         isEnenySeeingPlayer = fovRef.CanSeePlayer;
@@ -87,10 +86,10 @@ public class EnemyScript : MonoBehaviour
                 break;
             default:
                 break;
-=======
+
             ChangeTargetToPlayer();
             // Debug.LogWarning("ChangingToPlayer");
->>>>>>> Andy
+
         }
     }
 
