@@ -35,6 +35,12 @@ public class Player : MonoBehaviour
         set { movementSpeed = value; }
     }
 
+    public float StartEnergyAmount
+    {
+        get { return startEnergyAmount; }
+    }
+
+
     public bool Invisible
     {
         get { return _invisible; }
@@ -118,7 +124,7 @@ public class Player : MonoBehaviour
         }
         
         IsInShadow = true;
-        OnLightUpdate.Invoke();
+        OnLightUpdate?.Invoke();
     }
 
     private IEnumerator DashCoroutine()
