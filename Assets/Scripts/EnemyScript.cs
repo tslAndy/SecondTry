@@ -60,7 +60,7 @@ public class EnemyScript : MonoBehaviour
         switch (currentState)
         {
             case EnemyStates.Staying:
-                animator.SetTrigger("Staying");
+                animator?.SetTrigger("Staying");
                 if (isEnenySeeingPlayer)
                 {
                     ChangeTargetToPlayer();
@@ -112,7 +112,7 @@ public class EnemyScript : MonoBehaviour
     private void ChangeTargetToPlayer()
     {
         SwitchState(EnemyStates.FollowingPlayer);
-        animator.SetTrigger("Walking");
+        animator?.SetTrigger("Walking");
     }
     private void ChangeTargetToDefault()
     {
