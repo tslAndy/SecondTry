@@ -86,9 +86,6 @@ public class EnemyScript : MonoBehaviour
                 break;
             default:
                 break;
-
-            // Debug.LogWarning("ChangingToPlayer");
-
         }
     }
 

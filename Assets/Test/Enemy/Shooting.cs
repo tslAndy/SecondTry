@@ -7,6 +7,7 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField] private float speed, shootRate;
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private  Transform projectileSpawner;
 
     float _lastShootTime;
 
@@ -16,7 +17,7 @@ public class Shooting : MonoBehaviour
         if (Time.time < _lastShootTime + shootRate)
             return;
 
-        GameObject projectile = Instantiate(projectilePrefab, transform);
+        GameObject projectile = Instantiate(projectilePrefab, projectileSpawner);
         projectile.transform.SetParent(null);
         projectile.GetComponent<Rigidbody2D>().velocity = direction * speed;
         _lastShootTime = Time.time;
