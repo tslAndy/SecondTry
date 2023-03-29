@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         }
         
         IsInShadow = true;
-        OnLightUpdate.Invoke();
+        OnLightUpdate?.Invoke();
     }
 
     private IEnumerator DashCoroutine()
