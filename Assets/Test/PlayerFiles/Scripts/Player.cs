@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
         set { movementSpeed = value; }
     }
 
+    public float StartEnergyAmount
+    {
+        get { return startEnergyAmount; }
+    }
+
     public bool IsInShadow { get; set; }
 
     private Vector2 _keyboardDirection, _mouseDirection;
