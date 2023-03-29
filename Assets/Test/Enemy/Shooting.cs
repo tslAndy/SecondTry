@@ -12,10 +12,13 @@ public class Shooting : MonoBehaviour
 
     public void Shoot(Vector2 direction)
     {
+        Debug.Log($"{Time.time} < {_lastShootTime} + {shootRate}  ({_lastShootTime + shootRate})");
         if (Time.time < _lastShootTime + shootRate)
             return;
+
         GameObject projectile = Instantiate(projectilePrefab, transform);
         projectile.transform.SetParent(null);
-        projectile.GetComponent<Rigidbody2D>().velocity = direction * speed;    
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * speed;
+        _lastShootTime = Time.time;
     }
 }

@@ -33,6 +33,13 @@ public class Player : MonoBehaviour
         set { movementSpeed = value; }
     }
 
+    public bool Invisible
+    {
+        get { return _invisible; }
+        set { _invisible = value; }
+    }
+
+
     public bool IsInShadow { get; set; }
 
     private Vector2 _keyboardDirection, _mouseDirection;

@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour
         if (isEnenySeeingPlayer)
         {
             ChangeTargetToPlayer();
-            Debug.LogWarning("ChangingToPlayer");
+            // Debug.LogWarning("ChangingToPlayer");
         }
         if(!shouldEnemyStay)
             CanMoveNext();
