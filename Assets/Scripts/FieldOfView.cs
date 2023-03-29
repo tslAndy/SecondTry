@@ -30,8 +30,7 @@ public class FieldOfView : MonoBehaviour
 
     private IEnumerator FOVCheck()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
-        Debug.Log(CanSeePlayer);
+        WaitForSeconds wait = new WaitForSeconds(0.1f);
         while (true)
         {
             yield return wait;
@@ -52,7 +51,7 @@ public class FieldOfView : MonoBehaviour
             {
                 float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
-                if(!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))
+                if(!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer) && EnemyScript.CanEnemiesSeePlayer)
                     CanSeePlayer = true;
                 else 
                     CanSeePlayer = false;
