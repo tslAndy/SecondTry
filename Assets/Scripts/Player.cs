@@ -6,6 +6,8 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
+    public static event Action PlayerEnteredInvicibility;
+    public static event Action PlayerExitedInvicibility;
     [SerializeField] private float movementSpeed, rotationSpeed;
     [SerializeField] private float startEnergyAmount;
     [SerializeField] private float dashSpeed, dashDuration, dashSpent, dashTrailVisibleDuration;
@@ -61,6 +63,8 @@ public class Player : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
         bool dashPressed = Input.GetButtonDown("Fire2");
         bool invisiblePressed = Input.GetButton("Jump");
+        bool invisibleEntred = Input.GetButtonDown("Jump");
+        bool invisibleExited = Input.GetButtonUp("Jump");
 
         _keyboardDirection = new Vector2(x, y);
         _keyboardDirection.Normalize();
@@ -74,7 +78,10 @@ public class Player : MonoBehaviour
             return;
 
         _invisible = invisiblePressed && (CurrentEnergyAmount - invisibleSpent >= 0) && !_coolingDownAfterAttack;
-        
+        if (invisibleEntred)
+            PlayerEnteredInvicibility?.Invoke();
+        if (invisibleExited)
+            PlayerExitedInvicibility?.Invoke();
         if (dashPressed && CurrentEnergyAmount - dashSpent >= 0 && !_invisible)
             _currentState = State.DashStart;
         else if (_keyboardDirection == Vector2.zero)
@@ -86,9 +93,9 @@ public class Player : MonoBehaviour
     }
 
     private void UpdateState()
-    {
+    {        
         if (_invisible)
-            CurrentEnergyAmount -= invisibleSpent * Time.deltaTime;
+            CurrentEnergyAmount -= invisibleSpent * Time.deltaTime;                   
         Color color = spriteRenderer.color;
         spriteRenderer.color = new Color(color.r, color.g, color.b,_invisible ? 0.5f : 1.0f);
         

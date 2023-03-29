@@ -5,6 +5,9 @@ using Pathfinding;
 
 public class EnemyScript : MonoBehaviour
 {
+    [HideInInspector]
+    public static bool CanEnemiesSeePlayer { get; set; } = true;
+
     [SerializeField]
     private bool shouldEnemyStay = false;
 
@@ -15,6 +18,8 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private float playerPosForgetTimer;
+    private float playerPosForgetTimerCounter;
+    private bool isFollowingPlayer = false;
 
     private bool isEnenySeeingPlayer;
 
@@ -27,7 +32,11 @@ public class EnemyScript : MonoBehaviour
         pathScript = GetComponent<AIPath>();
         destinationScript = GetComponent<AIDestinationSetter>();
         playerRef = GameObject.FindGameObjectWithTag("Player").transform;
+        pathPointsReserve.Add(playerRef);
+        playerPosForgetTimerCounter = playerPosForgetTimer;
 
+        Player.PlayerEnteredInvicibility += OnPlayerInvincibleEnter;
+        Player.PlayerExitedInvicibility += OnPlayerInvincibleExit;
         if (!shouldEnemyStay)
             destinationScript.target = pathPoints[targetIndex];
     }
@@ -39,21 +48,49 @@ public class EnemyScript : MonoBehaviour
         if (isEnenySeeingPlayer)
         {
             ChangeTargetToPlayer();
-            // Debug.LogWarning("ChangingToPlayer");
+        } else if(isFollowingPlayer)
+        {
+            playerPosForgetTimerCounter -= Time.deltaTime;
+            if(playerPosForgetTimerCounter <= 0)
+            {
+                ChangeTargetToDefault();
+            }
         }
         if(!shouldEnemyStay)
             CanMoveNext();
     }
 
+
+
+    private void OnPlayerInvincibleEnter()
+    {
+        ChangeTargetToDefault();
+        CanEnemiesSeePlayer = false;
+    }
+    private void OnPlayerInvincibleExit()
+    {
+        CanEnemiesSeePlayer = true;
+    }
     private void ChangeTargetToPlayer()
     {
-        pathPointsReserve = pathPoints;
-        pathPoints.Clear();
-        pathPoints.Add(playerRef);
+        targetIndex = -1;
+        isFollowingPlayer = true;
+    }
+    private void ChangeTargetToDefault()
+    {
+        Debug.LogWarning(pathPoints[0 ]);
+        targetIndex = 0;
+        playerPosForgetTimerCounter = playerPosForgetTimer;
+        destinationScript.target = pathPoints[targetIndex];
+        isFollowingPlayer = false;
+
     }
     private void MoveNext()
     {
-        destinationScript.target = pathPoints[targetIndex];
+        if(isFollowingPlayer)
+            destinationScript.target = pathPointsReserve[targetIndex];
+        else
+            destinationScript.target = pathPoints[targetIndex];
     }
 
     private void CanMoveNext()
@@ -68,4 +105,5 @@ public class EnemyScript : MonoBehaviour
                 targetIndex = -1;
         }
     }
+
 }
