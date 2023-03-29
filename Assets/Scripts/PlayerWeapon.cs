@@ -85,6 +85,6 @@ public class PlayerWeapon : MonoBehaviour
         // start adding speed after two or more kills
         _killedInCombo++;
         player.MovementSpeed += comboDeltaV;
-        OnComboUpdate.Invoke();
+        //OnComboUpdate?.Invoke();
     }
 }
