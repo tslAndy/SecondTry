@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mana
+  - Win
   layers:
   - Default
   - TransparentFX
