@@ -98,15 +98,6 @@ public class EnemyScript : MonoBehaviour
         currentState = newState;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && this.gameObject.CompareTag("Enemy"))
-        {
-            //collision.gameObject.SetActive(false);
-            PlayerDied?.Invoke();
-        }
-    }
-
     private void OnPlayerInvincibleEnter()
     {
         ChangeTargetToDefault();
