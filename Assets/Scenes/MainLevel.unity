@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &10919273
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1643,6 +1645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &236972323
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1939,6 +1943,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &271083096
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28149,6 +28155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &301516557
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28796,6 +28804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &413110321
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29757,6 +29767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &473580689
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30470,6 +30482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &551233683
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30949,6 +30963,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &569447967
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31036,6 +31052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &569964467
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31123,6 +31141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &572369874
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65079,6 +65099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &669680803
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65166,6 +65188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &675524944
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65263,6 +65287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &716046993
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66180,6 +66206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &794407665
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66796,6 +66824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &850786215
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67166,6 +67196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &905721291
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68206,6 +68238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &998074506
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68572,6 +68606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1026876733
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69070,6 +69106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1119281028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69187,6 +69225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1132551725
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69273,6 +69313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1154060260
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69894,6 +69936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1238023824
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70208,6 +70252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1275279037
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70596,6 +70642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1323027728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71342,6 +71390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1351858375
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71585,6 +71635,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1382659438
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71879,6 +71931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1459302652
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -72582,6 +72636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1534263224
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73334,6 +73390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1567984177
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -74310,6 +74368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1678608158
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -74397,6 +74457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1709976169
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -74878,6 +74940,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1722056757
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -75156,6 +75220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1750277813
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -76279,6 +76345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1838992044
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -76788,6 +76856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1866983418
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77363,6 +77433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1986065329
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77450,6 +77522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1989907108
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77542,6 +77616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &1995857395
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77634,6 +77710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &2014160523
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -78400,6 +78478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f2a886adbda441b5ad4afbd787764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomEffect: {fileID: 0}
+  attackObject: {fileID: 0}
 --- !u!23 &2138699602
 MeshRenderer:
   m_ObjectHideFlags: 0
