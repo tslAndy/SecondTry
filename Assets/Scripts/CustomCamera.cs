@@ -45,7 +45,7 @@ public class CustomCamera : MonoBehaviour
         Vector3 direction = distDiff.normalized;
         Vector3 delta = direction * speed * Time.deltaTime;
 
-        if (distDiff.magnitude > 0.2f)
+        if (distDiff.magnitude > 0.1f)
         {
             transform.position += delta;
         }
