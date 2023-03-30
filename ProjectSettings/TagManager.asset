@@ -7,6 +7,7 @@ TagManager:
   - Mana
   - Enemy
   - Shooting enemy
+  - Win
   layers:
   - Default
   - TransparentFX
