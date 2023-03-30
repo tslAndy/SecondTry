@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 public class EnemyScript : MonoBehaviour
 {
+    public static event Action PlayerDied;
+
     [HideInInspector]
     public static bool CanEnemiesSeePlayer { get; set; } = true;
 
@@ -95,7 +98,14 @@ public class EnemyScript : MonoBehaviour
         currentState = newState;
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //collision.gameObject.SetActive(false);
+            PlayerDied?.Invoke();
+        }
+    }
 
     private void OnPlayerInvincibleEnter()
     {

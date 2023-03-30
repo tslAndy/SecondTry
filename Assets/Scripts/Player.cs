@@ -96,8 +96,13 @@ public class Player : MonoBehaviour
         else
             _currentState = State.Run;
         
+    }
+
+    private void LateUpdate()
+    {
         UpdateState();
     }
+        
 
     private void UpdateState()
     {        
