@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Light2D nightLight;
     [SerializeField] private MapManager mapManager;
     [SerializeField] private Animator animator;
-
+    
     enum State
     {
         Idle,
@@ -29,7 +29,21 @@ public class Player : MonoBehaviour
 
     private State _currentState;
     private bool _invisible, _coolingDownAfterAttack;
-    public float CurrentEnergyAmount { get; set; }
+    private float _currentEnergy;
+    public float CurrentEnergyAmount {
+        get
+        {
+            return _currentEnergy;
+        }
+        set
+        {
+                //_currentEnergy = Mathf.Clamp(_currentEnergy + value, 0, startEnergyAmount);
+                _currentEnergy = value;
+                if (_currentEnergy > startEnergyAmount)
+                    _currentEnergy = startEnergyAmount; 
+        }
+        
+    }
     public float MovementSpeed
     {
         get { return movementSpeed; }
