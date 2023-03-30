@@ -41,6 +41,6 @@ public class GameManagerScript : MonoBehaviour
 
     private void OnPlayerDied()
     {       
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
