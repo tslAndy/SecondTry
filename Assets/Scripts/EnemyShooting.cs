@@ -23,7 +23,7 @@ public class EnemyShooting : MonoBehaviour
             Debug.Log("should shoot");
             Vector2 direction = (player.transform.position - transform.position).normalized;
             Debug.Log($"{player.IsInShadow} {player.Invisible}");
-            if (!(player.IsInShadow || player.Invisible))
+            if (!(player.Invisible))
                 shooting.Shoot(direction);
         }
     }
