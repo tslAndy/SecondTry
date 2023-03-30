@@ -7,7 +7,8 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField] private float speed, shootRate;
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private  Transform projectileSpawner;
+    [SerializeField] private Transform projectileSpawner;
+    [SerializeField] private AudioSource shootSound;
 
     float _lastShootTime;
 
@@ -20,6 +21,7 @@ public class Shooting : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawner);
         projectile.transform.SetParent(null);
         projectile.GetComponent<Rigidbody2D>().velocity = direction * speed;
+        shootSound.Play();
         _lastShootTime = Time.time;
     }
 }
