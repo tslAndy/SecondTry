@@ -9,55 +9,90 @@ public class EnemyScript : MonoBehaviour
     public static bool CanEnemiesSeePlayer { get; set; } = true;
 
     [SerializeField]
-    private bool shouldEnemyStay = false;
-
-    [SerializeField]
     private List<Transform> pathPoints = new List<Transform>();
-    private List<Transform> pathPointsReserve = new List<Transform>();
     private int targetIndex = 0;
 
     [SerializeField]
     private float playerPosForgetTimer;
     private float playerPosForgetTimerCounter;
-    private bool isFollowingPlayer = false;
 
     private bool isEnenySeeingPlayer;
 
+    private Animator animator;
+
     private Transform playerRef;
+    private FieldOfView fovRef;
 
     private AIPath pathScript;
     private AIDestinationSetter destinationScript;
+    private EnemyStates currentState = EnemyStates.WalkingBetweenPoints;
+    private enum EnemyStates
+    {
+        Staying,
+        WalkingBetweenPoints,
+        FollowingPlayer,
+        Attacking
+    }
     void Start()
     {
         pathScript = GetComponent<AIPath>();
         destinationScript = GetComponent<AIDestinationSetter>();
+        animator = GetComponent<Animator>();
         playerRef = GameObject.FindGameObjectWithTag("Player").transform;
-        pathPointsReserve.Add(playerRef);
+        fovRef = GetComponent<FieldOfView>();
         playerPosForgetTimerCounter = playerPosForgetTimer;
 
         Player.PlayerEnteredInvicibility += OnPlayerInvincibleEnter;
         Player.PlayerExitedInvicibility += OnPlayerInvincibleExit;
-        if (!shouldEnemyStay)
-            destinationScript.target = pathPoints[targetIndex];
+        destinationScript.target = pathPoints[targetIndex];
+
+        StartCoroutine(CanMoveNext());
     }
 
     // Update is called once per frame
     void Update()
     {
-        isEnenySeeingPlayer = GetComponent<FieldOfView>().CanSeePlayer;
-        if (isEnenySeeingPlayer)
+        if (pathPoints.Count == 1 && currentState != EnemyStates.FollowingPlayer )
         {
-            ChangeTargetToPlayer();
-        } else if(isFollowingPlayer)
-        {
-            playerPosForgetTimerCounter -= Time.deltaTime;
-            if(playerPosForgetTimerCounter <= 0)
-            {
-                ChangeTargetToDefault();
-            }
+            SwitchState(EnemyStates.Staying);
         }
-        if(!shouldEnemyStay)
-            CanMoveNext();
+        isEnenySeeingPlayer = fovRef.CanSeePlayer;
+        switch (currentState)
+        {
+            case EnemyStates.Staying:
+                animator?.SetTrigger("Staying");
+                if (isEnenySeeingPlayer)
+                {
+                    ChangeTargetToPlayer();
+                }
+                break;
+            case EnemyStates.WalkingBetweenPoints:
+                if (isEnenySeeingPlayer)
+                {                  
+                    ChangeTargetToPlayer();
+                }
+                break;
+            case EnemyStates.FollowingPlayer:
+                if (!isEnenySeeingPlayer)
+                {
+                    playerPosForgetTimerCounter -= Time.deltaTime;
+                    if (playerPosForgetTimerCounter <= 0)
+                    {
+                        ChangeTargetToDefault();
+                    }
+                }
+                break;
+            case EnemyStates.Attacking:
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    private void SwitchState(EnemyStates newState)
+    {
+        currentState = newState;
     }
 
 
@@ -73,37 +108,55 @@ public class EnemyScript : MonoBehaviour
     }
     private void ChangeTargetToPlayer()
     {
-        targetIndex = -1;
-        isFollowingPlayer = true;
+        SwitchState(EnemyStates.FollowingPlayer);
+        animator?.SetTrigger("Walking");
     }
     private void ChangeTargetToDefault()
     {
-        Debug.LogWarning(pathPoints[0 ]);
         targetIndex = 0;
         playerPosForgetTimerCounter = playerPosForgetTimer;
         destinationScript.target = pathPoints[targetIndex];
-        isFollowingPlayer = false;
+        animator?.SetTrigger("Walking");
 
+        SwitchState(EnemyStates.WalkingBetweenPoints);
     }
     private void MoveNext()
     {
-        if(isFollowingPlayer)
-            destinationScript.target = pathPointsReserve[targetIndex];
+        if(currentState == EnemyStates.FollowingPlayer)
+            destinationScript.target = playerRef;
         else
             destinationScript.target = pathPoints[targetIndex];
     }
 
-    private void CanMoveNext()
+    private IEnumerator CanMoveNext()
     {
-        float magnitude = (destinationScript.target.position - transform.position).magnitude;
-        if (magnitude < 1)
+        while (true)
         {
-            targetIndex++;
-            if (targetIndex < pathPoints.Count)
-                MoveNext();
-            else
-                targetIndex = -1;
+
+            yield return new WaitForSeconds(0.1f);
+            float magnitude = (destinationScript.target.position - transform.position).magnitude;
+            if (magnitude < 1)
+            {
+                targetIndex++;
+                Debug.LogWarning(currentState);
+                switch (currentState)
+               {
+                    case EnemyStates.Staying:                       
+                        destinationScript.target = pathPoints[0];
+                        break;
+                    case EnemyStates.WalkingBetweenPoints:
+                        if (targetIndex < pathPoints.Count)
+                              MoveNext();
+                        else
+                            targetIndex = -1;
+                            break;
+                    case EnemyStates.FollowingPlayer:
+                            MoveNext();
+                            break;
+                }     
+            }            
         }
+            
     }
 
 }
