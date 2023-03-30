@@ -128,7 +128,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &4149509043295982028
 MonoBehaviour:
@@ -278,7 +278,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.042973757, y: 0.43850914}
+  m_Offset: {x: 0.01851964, y: 0.54331326}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -289,7 +289,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.46138334, y: 0.2506352}
+  m_Size: {x: 0.6640048, y: 0.46024346}
   m_EdgeRadius: 0
 --- !u!114 &4149509043295982030
 MonoBehaviour:
@@ -308,6 +308,7 @@ MonoBehaviour:
   comboDeltaV: 0
   weaponCollider: {fileID: 4149509043295982031}
   player: {fileID: 4149509043295982028}
+  animator: {fileID: 0}
 --- !u!114 &4149509043295982016
 MonoBehaviour:
   m_ObjectHideFlags: 0
