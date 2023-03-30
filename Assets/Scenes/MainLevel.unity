@@ -29728,6 +29728,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5047210449743752496, guid: 687188e183791604f8b36b4d64d482eb, type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047210449743752496, guid: 687188e183791604f8b36b4d64d482eb, type: 3}
+      propertyPath: musicSounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 806a4df16b346184b8a339111400817e, type: 3}
+    - target: {fileID: 5047210449743752496, guid: 687188e183791604f8b36b4d64d482eb, type: 3}
+      propertyPath: musicSounds.Array.data[2].itsName
+      value: StepsSound
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 687188e183791604f8b36b4d64d482eb, type: 3}
 --- !u!1001 &506735438
@@ -71609,7 +71621,7 @@ PrefabInstance:
     - target: {fileID: 303403360880450957, guid: 289e9c75a2aabc64ba8fb4a60494db71, type: 3}
       propertyPath: pathPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 754615130}
     - target: {fileID: 303403360880450964, guid: 289e9c75a2aabc64ba8fb4a60494db71, type: 3}
       propertyPath: m_Name
       value: ShootingEnemy 3

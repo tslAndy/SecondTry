@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     [SerializeField] AudioMixer mixer;
 
-    public const string MUSIC_KEY = "musiVolume";
+    public const string MUSIC_KEY = "musiсVolume";
     private void Awake()
     {
         if(instance == null)

@@ -10,6 +10,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Collider2D weaponCollider;
     [SerializeField] private Player player;
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource attackSound;
 
     public delegate void AttackAction();
     public static event AttackAction OnAttack;
@@ -58,6 +59,7 @@ public class PlayerWeapon : MonoBehaviour
         _lastAttacked = Time.time;
         animator.SetTrigger("Attack");
         OnAttack.Invoke();
+        attackSound.Play();
         yield return new WaitForSeconds(weaponCooldown);
         weaponCollider.enabled = false;
     }
