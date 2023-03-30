@@ -86,9 +86,6 @@ public class EnemyScript : MonoBehaviour
                 break;
             default:
                 break;
-
-            // Debug.LogWarning("ChangingToPlayer");
-
         }
     }
 
@@ -141,7 +138,6 @@ public class EnemyScript : MonoBehaviour
             if (magnitude < 1)
             {
                 targetIndex++;
-                Debug.LogWarning(currentState);
                 switch (currentState)
                {
                     case EnemyStates.Staying:                       

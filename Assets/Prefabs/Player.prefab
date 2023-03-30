@@ -156,6 +156,7 @@ MonoBehaviour:
   trailRenderer: {fileID: 4149509043295982017}
   nightLight: {fileID: 4149509043295982018}
   mapManager: {fileID: 0}
+  animator: {fileID: 4149509043295982019}
 --- !u!96 &4149509043295982017
 TrailRenderer:
   serializedVersion: 2
