@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mana
   - Enemy
+  - Shooting enemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,6 @@ TagManager:
   - Player
   - Projectiles
   - Projectors
-  - 
   - 
   - 
   - 
