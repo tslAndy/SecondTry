@@ -32,7 +32,7 @@ public class Pause : MonoBehaviour
     }
     public void GoToMainMenu()
     {
-        //SceneManager.LoadScene(0);            // Go back to main menu
+        SceneManager.LoadScene(0);            // Go back to main menu
         Debug.Log("To Main Menu");
     }
 
