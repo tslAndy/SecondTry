@@ -118,11 +118,13 @@ public class EnemyScript : MonoBehaviour
     }
     private void ChangeTargetToPlayer()
     {
+        pathScript.maxSpeed = 4;
         SwitchState(EnemyStates.FollowingPlayer);
         animator?.SetTrigger("Walking");
     }
     private void ChangeTargetToDefault()
     {
+        pathScript.maxSpeed = 3;
         targetIndex = 0;
         playerPosForgetTimerCounter = playerPosForgetTimer;
         destinationScript.target = pathPoints[targetIndex];
